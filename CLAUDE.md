@@ -45,24 +45,27 @@ agent-commerce/
 ### Backend
 
 ```bash
+# Install dependencies
+uv sync
+
 # Start local dev environment
 docker-compose up
 
 # Run backend only
-uvicorn app.main:app --reload
+uv run uvicorn app.main:app --reload
 
 # Database migrations
-alembic upgrade head
-alembic revision --autogenerate -m "description"
+uv run alembic upgrade head
+uv run alembic revision --autogenerate -m "description"
 
 # Tests
-pytest
-pytest --cov=app
+uv run pytest
+uv run pytest --cov=app
 
 # Lint / format
-ruff check . --fix
-black .
-mypy app/
+uv run ruff check . --fix
+uv run black .
+uv run mypy app/
 ```
 
 ### Admin UI
