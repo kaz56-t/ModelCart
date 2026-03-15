@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
-from app.routers import products
+from app.routers import api_keys, products, search
 
 app = FastAPI(
     title="ModelCart API",
@@ -19,6 +19,8 @@ app.add_middleware(
 )
 
 app.include_router(products.router, prefix="/v1")
+app.include_router(search.router, prefix="/v1")
+app.include_router(api_keys.router, prefix="/v1")
 
 
 @app.get("/health")
